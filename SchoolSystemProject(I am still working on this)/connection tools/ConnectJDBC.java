@@ -7,7 +7,7 @@ public class ConnectJDBC
   private static final String URL ="jdbc:mysql://localhost:/mydb";
   private final static String USERNAME = "root";
   private final static String password ="#Abobo2225";
-   Connection connection =null;
+  Connection connection =null;
   
   
 

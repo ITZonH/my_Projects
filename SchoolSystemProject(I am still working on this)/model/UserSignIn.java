@@ -1,0 +1,37 @@
+package model;
+//LogIn backend class
+
+// 24/09/2025
+
+public class UserSignIn
+{
+    private String email;
+    private String pass;
+
+    public UserSignIn(String email, String pass)
+    {
+        this.email = email;
+        this.pass = pass;
+    }
+
+
+    public void setEmail(String email)
+    {
+        this.email=email;
+    }
+
+    public void setPass(String pass)
+    {
+        this.pass=pass;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public String getPass()
+    {
+        return pass;
+    }
+}
