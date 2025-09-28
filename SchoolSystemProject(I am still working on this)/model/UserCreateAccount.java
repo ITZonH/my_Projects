@@ -25,6 +25,11 @@ public class UserCreateAccount extends UserSignIn
     {
         this.lastName = lastName;
     }
+
+    public void setConfirmPass(String confirmPass)
+    {
+        this.confirmPass = confirmPass;
+    }
     public String getLastName()
     {
         return lastName;

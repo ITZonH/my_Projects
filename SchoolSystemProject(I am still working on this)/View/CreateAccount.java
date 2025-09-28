@@ -3,10 +3,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.Arrays;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import model.UserCreateAccountDAO;
+import model.UserCreateAccount;
+
 import javax.swing.JButton;
 
 
@@ -146,22 +153,70 @@ public class CreateAccount
         createAcoount.setVisible(true);
 
 
-        
-        
-    logInBotton.addMouseListener(new java.awt.event.MouseAdapter() {
-    @Override
-    public void mousePressed(java.awt.event.MouseEvent e) {
-        logInBotton.setLocation(logInBotton.getX(), logInBotton.getY() + 2);
-        new SchoolLogin();
-    }
-    @Override
-    public void mouseReleased(java.awt.event.MouseEvent e) {
-        logInBotton.setLocation(logInBotton.getX(), logInBotton.getY() - 2);
-    }
-});
+        createAccountBotton.addActionListener(e->
+        {
+            String fname = firstNameFiled.getText().trim();
+            String lName = lastNameFiled.getText().trim();
+            String email = emailField.getText().trim();
+            char [] newPassword = confirmPasswordField.getPassword();
+            char [] confPss = confirmPasswordField.getPassword();
+
+            String pass = new String(newPassword);
+            String cPass = new String(newPassword);
+            UserCreateAccount user = new UserCreateAccount(email, pass, cPass, fname, lName);
+            boolean created = new UserCreateAccountDAO().createUser(user);
+            Arrays.fill(newPassword, '\0');
+            Arrays.fill(confPss, '\0');
+
+            if(!fname.isEmpty() || !lName.isEmpty() || !email.isEmpty() || newPassword.length != 0 || confPss.length != 0 )
+            {
+                if(newPasswordField.getPassword().equals(confirmPasswordField.getPassword()))
+                {
+                    if(created)
+                    {
+                        new SchoolLogin(); 
+                        createAcoount.dispose();
+                    }
+                    
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Failed to create account. Check console for details.", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    }
+
+                }
+                else 
+                {
+                    JOptionPane.showMessageDialog(null, "Password don't match."," Validation ", JOptionPane.WARNING_MESSAGE);
+                }
+                
+            }
 
             
+            else
+            {
+                JOptionPane.showMessageDialog(null, " All fields required."," Validation ", JOptionPane.WARNING_MESSAGE);
+            }
 
+        });
+
+        
+        logInBotton.addMouseListener(new java.awt.event.MouseAdapter() 
+        {
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) 
+            {
+                logInBotton.setLocation(logInBotton.getX(), logInBotton.getY() + 2);
+            
+                new SchoolLogin();
+                createAcoount.dispose();
+            }
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent e) 
+            {
+                logInBotton.setLocation(logInBotton.getX(), logInBotton.getY() - 2);
+            }
+        });
 
         
     }

@@ -3,6 +3,6 @@
         "."
     ],
     "java.project.referencedLibraries": [
-        "mysql-connector-j-9.2.0.jar"
+        "connectionTools\\mysql-connector-j-9.2.0.jar"
     ]
 }

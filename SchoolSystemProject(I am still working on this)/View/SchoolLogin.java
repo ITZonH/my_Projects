@@ -129,6 +129,7 @@ public class SchoolLogin
     public void mousePressed(java.awt.event.MouseEvent e) {
         creatAccountBotton.setLocation(creatAccountBotton.getX(), creatAccountBotton.getY() + 2);
         new CreateAccount();
+        logInFrame.dispose();
     }
     @Override
     public void mouseReleased(java.awt.event.MouseEvent e) {
